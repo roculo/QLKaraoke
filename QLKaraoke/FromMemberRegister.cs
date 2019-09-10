@@ -33,18 +33,19 @@ namespace QLKaraoke
                 sex = "Female";
   
 
-            //open connection
-
-            DatabaseConnect.myConn.Open();
-            //excecute command
+        
             try
             {
-                String sql = "insert into Member (idcard,name,sex,born,phone,address,daycreate) values ('" + txtId.Text + "','" + txtName.Text + "','" + sex + "','" + dtpAge.Text + "','" + txtPhone.Text + "','" + txtAddress.Text + "','" + lbTime.Text + "')";
-                SqlCommand myCommand = new SqlCommand(sql, DatabaseConnect.myConn);
-                myCommand.ExecuteNonQuery();
-                //close connection
-                DatabaseConnect.myConn.Close();
-                //load again datagriview
+                var member = new Member();
+                member.idcard = txtId.Text;
+                member.name = txtName.Text;
+                member.phone = txtPhone.Text;
+                member.address = txtAddress.Text;
+                member.sex = sex;
+                member.born = dtpAge.Text;
+                member.daycreate = DateTime.Now.ToString();
+                DatabaseConnect.db.Members.Add(member);
+                DatabaseConnect.db.SaveChanges();
                 MessageBox.Show("Complete");
                 this.Close();
             }

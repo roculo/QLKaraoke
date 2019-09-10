@@ -13,7 +13,14 @@ C:\Users\84122\Documents\Visual Studio 2015\Projects\QLKaraoke\QLKaraoke\obj\Deb
 C:\Users\84122\Documents\Visual Studio 2015\Projects\QLKaraoke\QLKaraoke\obj\Debug\QLKaraoke.FormMenu.resources
 C:\Users\84122\Documents\Visual Studio 2015\Projects\QLKaraoke\QLKaraoke\obj\Debug\QLKaraoke.FromMemberRegister.resources
 C:\Users\84122\Documents\Visual Studio 2015\Projects\QLKaraoke\QLKaraoke\obj\Debug\QLKaraoke.Properties.Resources.resources
-C:\Users\84122\Documents\Visual Studio 2015\Projects\QLKaraoke\QLKaraoke\obj\Debug\QLKaraoke.RoomBooking.resources
 C:\Users\84122\Documents\Visual Studio 2015\Projects\QLKaraoke\QLKaraoke\obj\Debug\QLKaraoke.csproj.GenerateResource.Cache
 C:\Users\84122\Documents\Visual Studio 2015\Projects\QLKaraoke\QLKaraoke\obj\Debug\QLKaraoke.exe
 C:\Users\84122\Documents\Visual Studio 2015\Projects\QLKaraoke\QLKaraoke\obj\Debug\QLKaraoke.pdb
+C:\Users\84122\Documents\GitHub\QLKaraoke\QLKaraoke\bin\Debug\QLKaraoke.exe.config
+C:\Users\84122\Documents\GitHub\QLKaraoke\QLKaraoke\obj\Debug\QLKaraoke.exe
+C:\Users\84122\Documents\GitHub\QLKaraoke\QLKaraoke\obj\Debug\QLKaraoke.pdb
+C:\Users\84122\Documents\Visual Studio 2015\Projects\QLKaraoke\QLKaraoke\bin\Debug\EntityFramework.dll
+C:\Users\84122\Documents\Visual Studio 2015\Projects\QLKaraoke\QLKaraoke\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\84122\Documents\Visual Studio 2015\Projects\QLKaraoke\QLKaraoke\bin\Debug\EntityFramework.xml
+C:\Users\84122\Documents\Visual Studio 2015\Projects\QLKaraoke\QLKaraoke\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\84122\Documents\Visual Studio 2015\Projects\QLKaraoke\QLKaraoke\obj\Debug\QLKaraoke.FormRoomBooking.resources

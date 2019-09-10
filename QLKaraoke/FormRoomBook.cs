@@ -37,25 +37,13 @@ namespace QLKaraoke
 
             try
             {
-                //Open database
-
-                DatabaseConnect.myConn.Open();
-                //Load database
-                String sql = "select * from member where idcard='" + txtId.Text + "'";
-                SqlCommand myCommand = new SqlCommand(sql, DatabaseConnect.myConn);
-                SqlDataAdapter myDa = new SqlDataAdapter();
-                myDa.SelectCommand = myCommand;
-                DataTable myDT = new DataTable();
-                myDa.Fill(myDT);
-                if (myDT.Rows[0]["idcard"].ToString() == txtId.Text)
+                if (DatabaseConnect.db.Members.Any(s => s.idcard == txtId.Text))
                 {
                     MessageBox.Show("Ok");
                     btnBook.Enabled = true;
                     txtId.Enabled = false;
                 }
-
-                //Close
-                DatabaseConnect.myConn.Close();
+                
             }
             catch
             {
@@ -83,10 +71,7 @@ namespace QLKaraoke
             }
 
 
-            //open connection
-
-            DatabaseConnect.myConn.Open();
-            //excecute command
+         
             String sql = "select idroom from Room where type='" + type + "' and people=" + people + " and idcard is NULL ";
             SqlCommand myCommand = new SqlCommand(sql, DatabaseConnect.myConn);
             SqlDataAdapter myDa = new SqlDataAdapter();
@@ -102,7 +87,7 @@ namespace QLKaraoke
 
                 if (now.Day == checkin.Day)//dat trong ngay
                 {
-
+                DatabaseConnect.myConn.Open();
                     MessageBox.Show(myDT.Rows[0]["idroom"].ToString());
                     String roomid = myDT.Rows[0]["idroom"].ToString();
                     if(txtId.Text=="Guest")

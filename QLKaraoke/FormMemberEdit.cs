@@ -64,20 +64,9 @@ namespace QLKaraoke
         }
         void loadData()
         {
-            //Open database
-
-            DatabaseConnect.myConn.Open();
-            //Load database
-            String sql = "select * from Member";
-            SqlCommand myCommand = new SqlCommand(sql, DatabaseConnect.myConn);
-            SqlDataAdapter myDa = new SqlDataAdapter();
-            myDa.SelectCommand = myCommand;
-            DataTable myDT = new DataTable();
-            myDa.Fill(myDT);
+            var lstMember = DatabaseConnect.db.Members.ToList();
             //Load Data into datagridview
-            dgvMember.DataSource = myDT;
-            //Close 
-            DatabaseConnect.myConn.Close();
+            dgvMember.DataSource = lstMember;
         }
         private void btnEdit_Click(object sender, EventArgs e)
         {
@@ -86,16 +75,16 @@ namespace QLKaraoke
                 sex = "Male";
             else
                 sex = "Female";
-            //open connection
 
-            DatabaseConnect.myConn.Open();
-            //excecute command
 
-            String sql = "update Member set  name='" + txtName.Text + "',phone='" + txtPhone.Text + "',address='" + txtAddress.Text + "',born='" + dtpAge.Text + "',sex='" + sex + "'where idcard ='" + txtId.Text + "'";
-            SqlCommand myCommand = new SqlCommand(sql, DatabaseConnect.myConn);
-            myCommand.ExecuteNonQuery();
-            //close connection
-            DatabaseConnect.myConn.Close();
+            var member = DatabaseConnect.db.Members.Where(s=>s.idcard==txtId.Text).SingleOrDefault();
+            member.name = txtName.Text;
+            member.phone = txtPhone.Text;
+            member.address = txtAddress.Text;
+            member.born = dtpAge.Text;
+            member.sex = sex;
+            DatabaseConnect.db.SaveChanges();
+    
             //load again datagriview
             loadData();
 
@@ -104,37 +93,21 @@ namespace QLKaraoke
 
         private void btnRemove_Click(object sender, EventArgs e)
         {
-            //open connection
 
-            DatabaseConnect.myConn.Open();
-            //excecute command
-
-            String sql = "delete from member" + " where idcard ='" + txtId.Text + "'";
-            SqlCommand myCommand = new SqlCommand(sql, DatabaseConnect.myConn);
-            myCommand.ExecuteNonQuery();
-            //close connection
-            DatabaseConnect.myConn.Close();
+            var member = DatabaseConnect.db.Members.Where(s => s.idcard == txtId.Text).SingleOrDefault();
+            DatabaseConnect.db.Members.Remove(member);
+            DatabaseConnect.db.SaveChanges();
             //load again datagriview
             loadData();
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            //Open database
-            String ConnStr = "Server=DESKTOP-UNV9GNN\\SQLEXPRESS;Initial Catalog=QLKaraoke_DB;Integrated Security=True";
-            SqlConnection myConn = new SqlConnection(ConnStr);
-            myConn.Open();
-            //Load database
-            String sql = "select * from Member where name like('%" + txtSearch.Text + "%')";
-            SqlCommand myCommand = new SqlCommand(sql, myConn);
-            SqlDataAdapter myDa = new SqlDataAdapter();
-            myDa.SelectCommand = myCommand;
-            DataTable myDT = new DataTable();
-            myDa.Fill(myDT);
+         
+            var lstMember = DatabaseConnect.db.Members.Where(s => s.name.Contains(txtSearch.Text)).ToList();
             //Load Data into datagridview
-            dgvMember.DataSource = myDT;
-            //Close 
-            myConn.Close();
+            dgvMember.DataSource = lstMember;
+  
         }
     }
 }

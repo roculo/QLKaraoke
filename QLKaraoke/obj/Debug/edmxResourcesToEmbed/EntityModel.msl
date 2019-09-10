@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="QLKaraoke_DBModelStoreContainer" CdmEntityContainer="QLKaraoke_DBEntities">
+    <EntitySetMapping Name="FoodBeverages">
+      <EntityTypeMapping TypeName="QLKaraoke_DBModel.FoodBeverage">
+        <MappingFragment StoreEntitySet="FoodBeverage">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="money" ColumnName="money" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FoodServices">
+      <EntityTypeMapping TypeName="QLKaraoke_DBModel.FoodService">
+        <MappingFragment StoreEntitySet="FoodServices">
+          <ScalarProperty Name="OrderValue" ColumnName="OrderValue" />
+          <ScalarProperty Name="idcard" ColumnName="idcard" />
+          <ScalarProperty Name="foodname" ColumnName="foodname" />
+          <ScalarProperty Name="number" ColumnName="number" />
+          <ScalarProperty Name="moneyper" ColumnName="moneyper" />
+          <ScalarProperty Name="value" ColumnName="value" />
+          <ScalarProperty Name="timecall" ColumnName="timecall" />
+          <ScalarProperty Name="checked" ColumnName="checked" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Invoices">
+      <EntityTypeMapping TypeName="QLKaraoke_DBModel.Invoice">
+        <MappingFragment StoreEntitySet="Invoice">
+          <ScalarProperty Name="idinvoice" ColumnName="idinvoice" />
+          <ScalarProperty Name="member" ColumnName="member" />
+          <ScalarProperty Name="room" ColumnName="room" />
+          <ScalarProperty Name="foodandbeverage" ColumnName="foodandbeverage" />
+          <ScalarProperty Name="service" ColumnName="service" />
+          <ScalarProperty Name="total" ColumnName="total" />
+          <ScalarProperty Name="daycreate" ColumnName="daycreate" />
+          <ScalarProperty Name="staff" ColumnName="staff" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LoginAccounts">
+      <EntityTypeMapping TypeName="QLKaraoke_DBModel.LoginAccount">
+        <MappingFragment StoreEntitySet="LoginAccount">
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="Pass" ColumnName="Pass" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="sex" ColumnName="sex" />
+          <ScalarProperty Name="birthday" ColumnName="birthday" />
+          <ScalarProperty Name="joined" ColumnName="joined" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Members">
+      <EntityTypeMapping TypeName="QLKaraoke_DBModel.Member">
+        <MappingFragment StoreEntitySet="Member">
+          <ScalarProperty Name="idcard" ColumnName="idcard" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="sex" ColumnName="sex" />
+          <ScalarProperty Name="born" ColumnName="born" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="daycreate" ColumnName="daycreate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Rooms">
+      <EntityTypeMapping TypeName="QLKaraoke_DBModel.Room">
+        <MappingFragment StoreEntitySet="Room">
+          <ScalarProperty Name="idroom" ColumnName="idroom" />
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="people" ColumnName="people" />
+          <ScalarProperty Name="cash" ColumnName="cash" />
+          <ScalarProperty Name="note" ColumnName="note" />
+          <ScalarProperty Name="idcard" ColumnName="idcard" />
+          <ScalarProperty Name="timestart" ColumnName="timestart" />
+          <ScalarProperty Name="timeend" ColumnName="timeend" />
+          <ScalarProperty Name="paid" ColumnName="paid" />
+          <ScalarProperty Name="coupon" ColumnName="coupon" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="roombookings">
+      <EntityTypeMapping TypeName="QLKaraoke_DBModel.roombooking">
+        <MappingFragment StoreEntitySet="roombooking">
+          <ScalarProperty Name="orderroom" ColumnName="orderroom" />
+          <ScalarProperty Name="idroom" ColumnName="idroom" />
+          <ScalarProperty Name="idcard" ColumnName="idcard" />
+          <ScalarProperty Name="checkin" ColumnName="checkin" />
+          <ScalarProperty Name="checkout" ColumnName="checkout" />
+          <ScalarProperty Name="paid" ColumnName="paid" />
+          <ScalarProperty Name="checked" ColumnName="checked" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -22,105 +22,94 @@ namespace QLKaraoke
             InitializeComponent();
             dgvFoodBeverage.Visible = false;
             dgvRoom.Visible = false;
-            lbstaff.Text = "Staff : " + FormLogin.Name;
+            lbstaff.Text = "Staff : " + FormLogin.staffName;
         }
 
         private void btnCheck_Click(object sender, EventArgs e)
         {
 
+            DatabaseConnect.myConn.Open();
             //try
             //{
-                dgvFoodBeverage.Visible = true;
-                dgvRoom.Visible = true;
-                //Open database
+            dgvFoodBeverage.Visible = true;
+            dgvRoom.Visible = true;
 
-                DatabaseConnect.myConn.Open();
-                //Load database
-                String sql = "select * from member where idcard='" + txtId.Text + "'";
-                SqlCommand myCommand = new SqlCommand(sql, DatabaseConnect.myConn);
-                SqlDataAdapter myDa = new SqlDataAdapter();
-                myDa.SelectCommand = myCommand;
-                DataTable myDT = new DataTable();
-                myDa.Fill(myDT);
-                if (myDT.Rows[0]["idcard"].ToString() == txtId.Text)
+            if (DatabaseConnect.db.Members.Any(s => s.idcard == txtId.Text))
+            {
+                var member = DatabaseConnect.db.Members.Where(s => s.idcard == txtId.Text).SingleOrDefault();
+                txtId.Enabled = false;
+                lbName.Text = member.name;
+                lbName.Visible = true;
+            }
+            //Load number Invoice
+
+            var numberInvoice = DatabaseConnect.db.Invoices.OrderByDescending(s=>s.idinvoice).Take(1).SingleOrDefault().idinvoice;
+
+
+            lbInvoice.Text = (numberInvoice + 1).ToString();
+
+
+            //Load database Room
+            String sql = "select r.idroom,cash,checkin,checkout,r.paid from room r, RoomBooking b where b.idcard like('%" + txtId.Text + "%') and r.idroom = b.idroom and checked IS NULL";
+
+            SqlCommand myCommand = new SqlCommand(sql, DatabaseConnect.myConn);
+            SqlDataAdapter myDa = new SqlDataAdapter();
+            myDa.SelectCommand = myCommand;
+            DataTable myDT = new DataTable();
+            myDa.Fill(myDT);
+            //Load Data into datagridview
+            dgvRoom.DataSource = myDT;
+            double thanhtienphong = 0;
+            int vv = dgvRoom.Rows.Count;
+            for (int i = 0; i < vv; i++)
+            {
+                double moneyper = Int32.Parse(dgvRoom.Rows[i].Cells["cash"].Value.ToString());
+                double paid = Int32.Parse(dgvRoom.Rows[i].Cells["paid"].Value.ToString());
+                String first = dgvRoom.Rows[i].Cells["checkin"].Value.ToString();
+                String last = dgvRoom.Rows[i].Cells["checkout"].Value.ToString();
+                if (last == "")
                 {
-                    txtId.Enabled = false;
-                    lbName.Text = myDT.Rows[0]["name"].ToString();
-                    lbName.Visible = true;
+                    last = DateTime.Now.ToString();
+                    sql = "  update RoomBooking set checkout='" + last + "' where idcard='" + txtId.Text + "'";
+                    myCommand = new SqlCommand(sql, DatabaseConnect.myConn);
+                    SqlDataReader dta = myCommand.ExecuteReader();
+                    dta.Close();
                 }
-                //Load number Invoice
-                sql = "select top 1 idinvoice from Invoice order by idinvoice desc";
-                myCommand = new SqlCommand(sql, DatabaseConnect.myConn);
-                myDa = new SqlDataAdapter();
-                myDa.SelectCommand = myCommand;
-                myDT = new DataTable();
-                myDa.Fill(myDT);
+                TimeSpan duration = DateTime.Parse(last).Subtract(DateTime.Parse(first));
+                double totaltime = duration.TotalHours;
+                thanhtienphong += totaltime * moneyper - paid;
 
-
-                lbInvoice.Text = (Int16.Parse(myDT.Rows[0]["idinvoice"].ToString()) + 1).ToString();
-
-
-                //Load database Room
-                sql = "select r.idroom,cash,checkin,checkout,r.paid from room r, RoomBooking b where b.idcard like('%" + txtId.Text + "%') and r.idroom = b.idroom and checked IS NULL";
-
-                myCommand = new SqlCommand(sql, DatabaseConnect.myConn);
-                myDa = new SqlDataAdapter();
-                myDa.SelectCommand = myCommand;
-                myDT = new DataTable();
-                myDa.Fill(myDT);
-                //Load Data into datagridview
-                dgvRoom.DataSource = myDT;
-                double thanhtienphong = 0;
-                int vv = dgvRoom.Rows.Count;
-                for (int i = 0; i < vv; i++)
-                {
-                    double moneyper = Int32.Parse(dgvRoom.Rows[i].Cells["cash"].Value.ToString());
-                    double paid = Int32.Parse(dgvRoom.Rows[i].Cells["paid"].Value.ToString());
-                    String first = dgvRoom.Rows[i].Cells["checkin"].Value.ToString();
-                    String last = dgvRoom.Rows[i].Cells["checkout"].Value.ToString();
-                    if (last == "")
-                    {
-                        last = DateTime.Now.ToString();
-                        sql = "  update RoomBooking set checkout='"+last+"' where idcard='" + txtId.Text + "'";
-                        myCommand = new SqlCommand(sql, DatabaseConnect.myConn);
-                        SqlDataReader dta = myCommand.ExecuteReader();
-                        dta.Close();
-                    }
-                    TimeSpan duration = DateTime.Parse(last).Subtract(DateTime.Parse(first));
-                    double totaltime = duration.TotalHours;
-                    thanhtienphong += totaltime * moneyper - paid;
-
-                }
-                lbMoneyRoom.Text = "" + thanhtienphong.ToString("C");
+            }
+            lbMoneyRoom.Text = "" + thanhtienphong.ToString("C");
 
 
 
-                //Load database Food and Beverage
-                sql = "select * from foodservices where idcard like('%" + txtId.Text + "%')  and checked IS NULL";
-                myCommand = new SqlCommand(sql, DatabaseConnect.myConn);
-                myDa = new SqlDataAdapter();
-                myDa.SelectCommand = myCommand;
-                myDT = new DataTable();
-                myDa.Fill(myDT);
-                //Load Data into datagridview
-                dgvFoodBeverage.DataSource = myDT;
-                int sc = dgvFoodBeverage.Rows.Count;
-                float thanhtien = 0;
-                for (int i = 0; i < sc - 1; i++)
-                    thanhtien += float.Parse(dgvFoodBeverage.Rows[i].Cells["value"].Value.ToString());
-                lbMoneyFood.Text = "" + thanhtien.ToString("C");
+            //Load database Food and Beverage
+            sql = "select * from foodservices where idcard like('%" + txtId.Text + "%')  and checked IS NULL";
+            myCommand = new SqlCommand(sql, DatabaseConnect.myConn);
+            myDa = new SqlDataAdapter();
+            myDa.SelectCommand = myCommand;
+            myDT = new DataTable();
+            myDa.Fill(myDT);
+            //Load Data into datagridview
+            dgvFoodBeverage.DataSource = myDT;
+            int sc = dgvFoodBeverage.Rows.Count;
+            float thanhtien = 0;
+            for (int i = 0; i < sc - 1; i++)
+                thanhtien += float.Parse(dgvFoodBeverage.Rows[i].Cells["value"].Value.ToString());
+            lbMoneyFood.Text = "" + thanhtien.ToString("C");
 
 
 
-                double total = thanhtienphong + thanhtien;
-                // bien an
-                tienroom = (int)thanhtienphong;
-                tienfood = (int)thanhtien;
-                tongtien = tienfood + tienroom + tienservice;
+            double total = thanhtienphong + thanhtien;
+            // bien an
+            tienroom = (int)thanhtienphong;
+            tienfood = (int)thanhtien;
+            tongtien = tienfood + tienroom + tienservice;
 
-                lbTotal.Text = "" + total.ToString("C");
-                //Close
-                DatabaseConnect.myConn.Close();
+            lbTotal.Text = "" + total.ToString("C");
+            //Close
+            DatabaseConnect.myConn.Close();
             //}
             //catch
             //{
@@ -240,8 +229,6 @@ namespace QLKaraoke
         }
         //--------------------------------------------------------------------------
         // for PrintDialog, PrintPreviewDialog and PrintDocument:
-        private System.Windows.Forms.PrintDialog prnDialog;
-        private System.Windows.Forms.PrintPreviewDialog prnPreview;
         private System.Drawing.Printing.PrintDocument prnDocument;
 
         // for Invoice Head:
@@ -249,7 +236,6 @@ namespace QLKaraoke
         private string InvSubTitle1;
         private string InvSubTitle2;
         private string InvSubTitle3;
-        private string InvImage;
 
         // for Report:
         private int CurrentY;
@@ -260,15 +246,7 @@ namespace QLKaraoke
         private int bottomMargin;
         private int InvoiceWidth;
         private int InvoiceHeight;
-        private string CustomerName;
-        private string CustomerCity;
-        private string SellerName;
-        private string SaleID;
-        private string SaleDate;
-        private decimal SaleFreight;
-        private decimal SubTotal;
-        private decimal InvoiceTotal;
-        private bool ReadInvoice;
+
         private int AmountPosition;
 
         // Font and Color:------------------
@@ -293,10 +271,10 @@ namespace QLKaraoke
         private void SetInvoiceHead(Graphics g)
         {
             //Titles and Image of invoice:
-            InvTitle = "International Food Company";
-            InvSubTitle1 = "23 Abo Naga street";
-            InvSubTitle2 = "Cairo, Egypt";
-            InvSubTitle3 = "Phone 2233445566";
+            InvTitle = "Karaoke Sinh Vien";
+            InvSubTitle1 = "23 Nguyen Huu Tho ";
+            InvSubTitle2 = "Q7, TP HCM";
+            InvSubTitle3 = "Phone 0773606106";
 
             CurrentY = topMargin;
             CurrentX = leftMargin;
@@ -351,7 +329,7 @@ namespace QLKaraoke
             // Set Company Name:
             CurrentX = leftMargin;
             CurrentY = CurrentY + 8;
-            FieldValue = "Staff Name: " + FormLogin.Name;
+            FieldValue = "Staff Name: " + FormLogin.staffName;
             g.DrawString(FieldValue, InvoiceFont, BlackBrush, CurrentX, CurrentY);
             // Set City:
             CurrentX = CurrentX + (int)g.MeasureString(FieldValue, InvoiceFont).Width + 16;
@@ -379,10 +357,6 @@ namespace QLKaraoke
         private void SetInvoiceData(Graphics g, System.Drawing.Printing.PrintPageEventArgs e)
         {// Set Invoice Table:
             string FieldValue = "";
-            int CurrentRecord = 0;
-            int RecordsPerPage = 20; // twenty items in a page
-            decimal Amount = 0;
-            bool StopReading = false;
 
             // Set Table Head:
             int xProductID = leftMargin;

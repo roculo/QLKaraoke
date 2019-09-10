@@ -40,13 +40,13 @@
             this.value = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.timecallDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.foodServicesBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.qLResortDataSet = new QLKaraoke_DBDataSet();
+            this.qLResortDataSet = new QLKaraoke.QLKaraoke_DBDataSet();
             this.lbName = new System.Windows.Forms.Label();
             this.lbStaff = new System.Windows.Forms.Label();
             this.lbMoneyRoom = new System.Windows.Forms.Label();
             this.lbMoneyFood = new System.Windows.Forms.Label();
             this.lbTotal = new System.Windows.Forms.Label();
-            this.foodServicesTableAdapter = new QLKaraoke_DBDataSetTableAdapters.FoodServicesTableAdapter();
+            this.foodServicesTableAdapter = new QLKaraoke.QLKaraoke_DBDataSetTableAdapters.FoodServicesTableAdapter();
             this.lbDay = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -88,10 +88,13 @@
             // 
             // dgvRoom
             // 
+            this.dgvRoom.AllowUserToAddRows = false;
+            this.dgvRoom.AllowUserToDeleteRows = false;
             this.dgvRoom.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvRoom.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvRoom.Location = new System.Drawing.Point(12, 70);
             this.dgvRoom.Name = "dgvRoom";
+            this.dgvRoom.ReadOnly = true;
             this.dgvRoom.Size = new System.Drawing.Size(766, 182);
             this.dgvRoom.TabIndex = 3;
             this.dgvRoom.Visible = false;
@@ -162,7 +165,6 @@
             this.qLResortDataSet.DataSetName = "QLResortDataSet";
             this.qLResortDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // 
             // lbName
             // 
             this.lbName.AutoSize = true;
@@ -222,7 +224,6 @@
             // 
             this.foodServicesTableAdapter.ClearBeforeFill = true;
             // 
-            // 
             // lbDay
             // 
             this.lbDay.AutoSize = true;
@@ -254,6 +255,7 @@
             this.button3.Text = "Print";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Visible = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // label2
             // 

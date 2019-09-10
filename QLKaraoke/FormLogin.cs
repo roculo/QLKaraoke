@@ -13,10 +13,12 @@ namespace QLKaraoke
 {
     public partial class FormLogin : Form
     {
-        public static string Name;
+        public static String staffName;
         public FormLogin()
         {
+            
             InitializeComponent();
+           
         }
 
         private void btnExit_Click(object sender, EventArgs e)
@@ -29,19 +31,11 @@ namespace QLKaraoke
             String username = txtUser.Text;
             String password = txtPass.Text;
             
-            DatabaseConnect.myConn.Open();
-
-            String sql = "select * from LoginAccount where username='" + username + "' and pass='" + password + "'";
-            SqlCommand myCommand = new SqlCommand(sql, DatabaseConnect.myConn);
-            SqlDataReader dta = myCommand.ExecuteReader();
-            if (dta.Read() == true)
+               if (DatabaseConnect.db.LoginAccounts.Any(s => s.username == username && s.Pass == password))
             {
-                dta.Close();
-                SqlDataAdapter myDa = new SqlDataAdapter();
-                myDa.SelectCommand = myCommand;
-                DataTable myDT = new DataTable();
-                myDa.Fill(myDT);
-                Name = myDT.Rows[0]["Name"].ToString();
+                var loginAcc = DatabaseConnect.db.LoginAccounts.Where(s => s.username == username).Single();
+                staffName = loginAcc.name;
+
                 this.Hide();
                 FormMenu newform = new FormMenu();
                 newform.Show();

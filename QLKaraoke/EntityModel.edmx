@@ -1,0 +1,322 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="QLKaraoke_DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="FoodBeverage">
+          <Key>
+            <PropertyRef Name="name" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="money" Type="int" />
+        </EntityType>
+        <EntityType Name="FoodServices">
+          <Key>
+            <PropertyRef Name="OrderValue" />
+          </Key>
+          <Property Name="OrderValue" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idcard" Type="nvarchar" MaxLength="50" />
+          <Property Name="foodname" Type="nvarchar" MaxLength="50" />
+          <Property Name="number" Type="int" />
+          <Property Name="moneyper" Type="int" />
+          <Property Name="value" Type="int" />
+          <Property Name="timecall" Type="text" />
+          <Property Name="checked" Type="int" />
+        </EntityType>
+        <EntityType Name="Invoice">
+          <Key>
+            <PropertyRef Name="idinvoice" />
+          </Key>
+          <Property Name="idinvoice" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="member" Type="nvarchar" MaxLength="50" />
+          <Property Name="room" Type="int" />
+          <Property Name="foodandbeverage" Type="int" />
+          <Property Name="service" Type="int" />
+          <Property Name="total" Type="int" />
+          <Property Name="daycreate" Type="nvarchar" MaxLength="50" />
+          <Property Name="staff" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="LoginAccount">
+          <Key>
+            <PropertyRef Name="username" />
+          </Key>
+          <Property Name="username" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Pass" Type="nvarchar" MaxLength="50" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="sex" Type="nvarchar" MaxLength="50" />
+          <Property Name="birthday" Type="nvarchar" MaxLength="50" />
+          <Property Name="joined" Type="nvarchar" MaxLength="50" />
+          <Property Name="address" Type="nvarchar" MaxLength="100" />
+          <Property Name="phone" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Member">
+          <Key>
+            <PropertyRef Name="idcard" />
+          </Key>
+          <Property Name="idcard" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="sex" Type="nvarchar" MaxLength="50" />
+          <Property Name="born" Type="nvarchar" MaxLength="50" />
+          <Property Name="phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="address" Type="nvarchar(max)" />
+          <Property Name="daycreate" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Room">
+          <Key>
+            <PropertyRef Name="idroom" />
+          </Key>
+          <Property Name="idroom" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="type" Type="nvarchar" MaxLength="50" />
+          <Property Name="people" Type="int" />
+          <Property Name="cash" Type="int" />
+          <Property Name="note" Type="ntext" />
+          <Property Name="idcard" Type="nvarchar" MaxLength="50" />
+          <Property Name="timestart" Type="text" />
+          <Property Name="timeend" Type="text" />
+          <Property Name="paid" Type="int" />
+          <Property Name="coupon" Type="int" />
+        </EntityType>
+        <EntityType Name="roombooking">
+          <Key>
+            <PropertyRef Name="orderroom" />
+          </Key>
+          <Property Name="orderroom" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idroom" Type="nvarchar" MaxLength="50" />
+          <Property Name="idcard" Type="nvarchar" MaxLength="50" />
+          <Property Name="checkin" Type="nvarchar" MaxLength="50" />
+          <Property Name="checkout" Type="nvarchar" MaxLength="50" />
+          <Property Name="paid" Type="int" />
+          <Property Name="checked" Type="int" />
+        </EntityType>
+        <EntityContainer Name="QLKaraoke_DBModelStoreContainer">
+          <EntitySet Name="FoodBeverage" EntityType="Self.FoodBeverage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FoodServices" EntityType="Self.FoodServices" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Invoice" EntityType="Self.Invoice" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LoginAccount" EntityType="Self.LoginAccount" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Member" EntityType="Self.Member" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Room" EntityType="Self.Room" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="roombooking" EntityType="Self.roombooking" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="QLKaraoke_DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="FoodBeverage">
+          <Key>
+            <PropertyRef Name="name" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="money" Type="Int32" />
+        </EntityType>
+        <EntityType Name="FoodService">
+          <Key>
+            <PropertyRef Name="OrderValue" />
+          </Key>
+          <Property Name="OrderValue" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idcard" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="foodname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="number" Type="Int32" />
+          <Property Name="moneyper" Type="Int32" />
+          <Property Name="value" Type="Int32" />
+          <Property Name="timecall" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="checked" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Invoice">
+          <Key>
+            <PropertyRef Name="idinvoice" />
+          </Key>
+          <Property Name="idinvoice" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="member" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="room" Type="Int32" />
+          <Property Name="foodandbeverage" Type="Int32" />
+          <Property Name="service" Type="Int32" />
+          <Property Name="total" Type="Int32" />
+          <Property Name="daycreate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="staff" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="LoginAccount">
+          <Key>
+            <PropertyRef Name="username" />
+          </Key>
+          <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Pass" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="sex" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="birthday" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="joined" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Member">
+          <Key>
+            <PropertyRef Name="idcard" />
+          </Key>
+          <Property Name="idcard" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="sex" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="born" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="daycreate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Room">
+          <Key>
+            <PropertyRef Name="idroom" />
+          </Key>
+          <Property Name="idroom" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="people" Type="Int32" />
+          <Property Name="cash" Type="Int32" />
+          <Property Name="note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="idcard" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="timestart" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="timeend" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="paid" Type="Int32" />
+          <Property Name="coupon" Type="Int32" />
+        </EntityType>
+        <EntityType Name="roombooking">
+          <Key>
+            <PropertyRef Name="orderroom" />
+          </Key>
+          <Property Name="orderroom" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idroom" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="idcard" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="checkin" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="checkout" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="paid" Type="Int32" />
+          <Property Name="checked" Type="Int32" />
+        </EntityType>
+        <EntityContainer Name="QLKaraoke_DBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="FoodBeverages" EntityType="Self.FoodBeverage" />
+          <EntitySet Name="FoodServices" EntityType="Self.FoodService" />
+          <EntitySet Name="Invoices" EntityType="Self.Invoice" />
+          <EntitySet Name="LoginAccounts" EntityType="Self.LoginAccount" />
+          <EntitySet Name="Members" EntityType="Self.Member" />
+          <EntitySet Name="Rooms" EntityType="Self.Room" />
+          <EntitySet Name="roombookings" EntityType="Self.roombooking" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="QLKaraoke_DBModelStoreContainer" CdmEntityContainer="QLKaraoke_DBEntities">
+          <EntitySetMapping Name="FoodBeverages">
+            <EntityTypeMapping TypeName="QLKaraoke_DBModel.FoodBeverage">
+              <MappingFragment StoreEntitySet="FoodBeverage">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="money" ColumnName="money" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FoodServices">
+            <EntityTypeMapping TypeName="QLKaraoke_DBModel.FoodService">
+              <MappingFragment StoreEntitySet="FoodServices">
+                <ScalarProperty Name="OrderValue" ColumnName="OrderValue" />
+                <ScalarProperty Name="idcard" ColumnName="idcard" />
+                <ScalarProperty Name="foodname" ColumnName="foodname" />
+                <ScalarProperty Name="number" ColumnName="number" />
+                <ScalarProperty Name="moneyper" ColumnName="moneyper" />
+                <ScalarProperty Name="value" ColumnName="value" />
+                <ScalarProperty Name="timecall" ColumnName="timecall" />
+                <ScalarProperty Name="checked" ColumnName="checked" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Invoices">
+            <EntityTypeMapping TypeName="QLKaraoke_DBModel.Invoice">
+              <MappingFragment StoreEntitySet="Invoice">
+                <ScalarProperty Name="idinvoice" ColumnName="idinvoice" />
+                <ScalarProperty Name="member" ColumnName="member" />
+                <ScalarProperty Name="room" ColumnName="room" />
+                <ScalarProperty Name="foodandbeverage" ColumnName="foodandbeverage" />
+                <ScalarProperty Name="service" ColumnName="service" />
+                <ScalarProperty Name="total" ColumnName="total" />
+                <ScalarProperty Name="daycreate" ColumnName="daycreate" />
+                <ScalarProperty Name="staff" ColumnName="staff" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LoginAccounts">
+            <EntityTypeMapping TypeName="QLKaraoke_DBModel.LoginAccount">
+              <MappingFragment StoreEntitySet="LoginAccount">
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="Pass" ColumnName="Pass" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="sex" ColumnName="sex" />
+                <ScalarProperty Name="birthday" ColumnName="birthday" />
+                <ScalarProperty Name="joined" ColumnName="joined" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Members">
+            <EntityTypeMapping TypeName="QLKaraoke_DBModel.Member">
+              <MappingFragment StoreEntitySet="Member">
+                <ScalarProperty Name="idcard" ColumnName="idcard" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="sex" ColumnName="sex" />
+                <ScalarProperty Name="born" ColumnName="born" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="daycreate" ColumnName="daycreate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rooms">
+            <EntityTypeMapping TypeName="QLKaraoke_DBModel.Room">
+              <MappingFragment StoreEntitySet="Room">
+                <ScalarProperty Name="idroom" ColumnName="idroom" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="people" ColumnName="people" />
+                <ScalarProperty Name="cash" ColumnName="cash" />
+                <ScalarProperty Name="note" ColumnName="note" />
+                <ScalarProperty Name="idcard" ColumnName="idcard" />
+                <ScalarProperty Name="timestart" ColumnName="timestart" />
+                <ScalarProperty Name="timeend" ColumnName="timeend" />
+                <ScalarProperty Name="paid" ColumnName="paid" />
+                <ScalarProperty Name="coupon" ColumnName="coupon" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="roombookings">
+            <EntityTypeMapping TypeName="QLKaraoke_DBModel.roombooking">
+              <MappingFragment StoreEntitySet="roombooking">
+                <ScalarProperty Name="orderroom" ColumnName="orderroom" />
+                <ScalarProperty Name="idroom" ColumnName="idroom" />
+                <ScalarProperty Name="idcard" ColumnName="idcard" />
+                <ScalarProperty Name="checkin" ColumnName="checkin" />
+                <ScalarProperty Name="checkout" ColumnName="checkout" />
+                <ScalarProperty Name="paid" ColumnName="paid" />
+                <ScalarProperty Name="checked" ColumnName="checked" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
