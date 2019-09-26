@@ -50,5 +50,11 @@ namespace QLKaraoke
             DatabaseConnect.myConn.Close();
 
         }
+
+        private void btnRegister_Click(object sender, EventArgs e)
+        {
+            FormRegisterStaff newform = new FormRegisterStaff();
+            newform.Show();
+        }
     }
 }

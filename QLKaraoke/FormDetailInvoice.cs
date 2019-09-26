@@ -29,7 +29,7 @@ namespace QLKaraoke
             dgvFoodBeverage.Visible = true;
             dgvRoom.Visible = true;
             //Open database
-
+            DatabaseConnect.myConn.Close();
             DatabaseConnect.myConn.Open();
             try
             {

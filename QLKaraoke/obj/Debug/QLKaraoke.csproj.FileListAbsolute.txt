@@ -24,3 +24,4 @@ C:\Users\84122\Documents\Visual Studio 2015\Projects\QLKaraoke\QLKaraoke\bin\Deb
 C:\Users\84122\Documents\Visual Studio 2015\Projects\QLKaraoke\QLKaraoke\bin\Debug\EntityFramework.xml
 C:\Users\84122\Documents\Visual Studio 2015\Projects\QLKaraoke\QLKaraoke\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\84122\Documents\Visual Studio 2015\Projects\QLKaraoke\QLKaraoke\obj\Debug\QLKaraoke.FormRoomBooking.resources
+C:\Users\84122\Documents\Visual Studio 2015\Projects\QLKaraoke\QLKaraoke\obj\Debug\QLKaraoke.FormRegisterStaff.resources
