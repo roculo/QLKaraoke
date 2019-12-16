@@ -13,7 +13,7 @@ namespace QLKaraoke
 {
     public partial class ListOrder : Form
     {
-        String ordervalue;
+        int ordervalue;
 
         public ListOrder()
         {
@@ -37,18 +37,11 @@ namespace QLKaraoke
             DialogResult dialogResult = MessageBox.Show("Are you sure ?", "DELETE ORDER?", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
-                //open connection
-     
-                DatabaseConnect.myConn.Open();
-                //excecute command
-
-                String sql = "delete from foodservices" + " where ordervalue =" + ordervalue + "";
-                SqlCommand myCommand = new SqlCommand(sql, DatabaseConnect.myConn);
-                myCommand.ExecuteNonQuery();
-                //close connection
-                DatabaseConnect.myConn.Close();
-                //load again datagriview
-                loadData();
+              
+                var foodServices = DatabaseConnect.db.FoodServices.Where(s => s.OrderValue == ordervalue).SingleOrDefault();
+                DatabaseConnect.db.FoodServices.Remove(foodServices);
+                DatabaseConnect.db.SaveChanges();
+                 loadData();
             }
             else if (dialogResult == DialogResult.No)
             {
@@ -58,26 +51,16 @@ namespace QLKaraoke
         }
         void loadData()
         {
-            //Open database
-
-            DatabaseConnect.myConn.Open();
-            //Load database
-            String sql = "select * from foodservices";
-            SqlCommand myCommand = new SqlCommand(sql, DatabaseConnect.myConn);
-            SqlDataAdapter myDa = new SqlDataAdapter();
-            myDa.SelectCommand = myCommand;
-            DataTable myDT = new DataTable();
-            myDa.Fill(myDT);
+            var lstFoodServices = DatabaseConnect.db.FoodServices.ToList();
             //Load Data into datagridview
-            dataGridView1.DataSource = myDT;
-            //Close 
-            DatabaseConnect.myConn.Close();
+            dataGridView1.DataSource = lstFoodServices;
+           
         }
 
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
         {
             int index = dataGridView1.CurrentCell.RowIndex;
-            ordervalue = dataGridView1.Rows[index].Cells[0].Value.ToString();
+            ordervalue =Int16.Parse(dataGridView1.Rows[index].Cells[0].Value.ToString());
         }
     }
 }

@@ -31,41 +31,38 @@ namespace QLKaraoke
 
         private void dgvRoom_SelectionChanged(object sender, EventArgs e)
         {
-            int index = dgvRoom.CurrentCell.RowIndex;
-            lbId.Text = dgvRoom.Rows[index].Cells[5].Value.ToString();
+            var curRow = dgvRoom.CurrentRow;
+            if (curRow != null && dgvRoom.Rows[0].Cells[5].Value != null)
+            {
+                int index = dgvRoom.CurrentCell.RowIndex;
 
-            lbRoomId.Text = dgvRoom.Rows[index].Cells[0].Value.ToString();
-            lbPeople.Text = dgvRoom.Rows[index].Cells[2].Value.ToString();
-            lbMoney.Text = dgvRoom.Rows[index].Cells[3].Value.ToString();
-            lbDeposited.Text = dgvRoom.Rows[index].Cells[9].Value.ToString();
-            txtStart.Text = dgvRoom.Rows[index].Cells[6].Value.ToString();
-            txtEnd.Text = dgvRoom.Rows[index].Cells[7].Value.ToString();
+                lbId.Text = dgvRoom.Rows[index].Cells[5].Value.ToString();
+
+                lbRoomId.Text = dgvRoom.Rows[index].Cells[0].Value.ToString();
+                lbPeople.Text = dgvRoom.Rows[index].Cells[2].Value.ToString();
+                lbMoney.Text = dgvRoom.Rows[index].Cells[3].Value.ToString();
+                lbDeposited.Text = dgvRoom.Rows[index].Cells[9].Value.ToString();
+                txtStart.Text = dgvRoom.Rows[index].Cells[6].Value.ToString();
+                txtEnd.Text = dgvRoom.Rows[index].Cells[7].Value.ToString();
+                txtUpdateMoney.Text = lbMoney.Text;
+            }
 
             dtpCheckIn.Format = DateTimePickerFormat.Custom;
             dtpCheckIn.CustomFormat = "HH:mm:ss tt";
             dtpCheckIn.ShowUpDown = true;
-            dtpCheckOut.Format = DateTimePickerFormat.Time;
+            dtpCheckOut.Format = DateTimePickerFormat.Custom;
             dtpCheckOut.ShowUpDown = true;
             dtpCheckOut.CustomFormat = "HH:mm:ss tt";
 
 
             if (lbId.Text != "")
             {
-                //Open database
-                DatabaseConnect.myConn.Close();
-                DatabaseConnect.myConn.Open();
                 //Load database
-                String sql = "select * from member where idcard='" + lbId.Text + "'";
-                SqlCommand myCommand = new SqlCommand(sql, DatabaseConnect.myConn);
-                SqlDataAdapter myDa = new SqlDataAdapter();
-                myDa.SelectCommand = myCommand;
-                DataTable myDT = new DataTable();
-                myDa.Fill(myDT);
-                lbPhone.Text = myDT.Rows[0]["phone"].ToString();
-                lbName.Text = myDT.Rows[0]["name"].ToString();
+                var member = DatabaseConnect.db.Members.Where(s => s.idcard == lbId.Text).SingleOrDefault();
 
-                //Close
-                DatabaseConnect.myConn.Close();
+                lbPhone.Text = member.phone;
+                lbName.Text = member.name;
+
 
             }
             else
@@ -84,43 +81,29 @@ namespace QLKaraoke
             // If the no button was pressed ...
             if (result == DialogResult.Yes)
             {
-                //Open database
 
-                DatabaseConnect.myConn.Open();
-                //Load database
+                var room = DatabaseConnect.db.Rooms.Where(s => s.idroom == lbRoomId.Text).SingleOrDefault();
+                room.idcard = null;
+                room.timeend = null;
+                room.timestart = null;
+                room.paid = 0;
+                room.coupon = 0;
+                DatabaseConnect.db.SaveChanges();
 
-                String sql = "update Room set idcard=" + "NULL" + ",timestart=" + "NULL" + ",timeend=" + "NULL" + ",paid=0,coupon=0 where idroom='" + lbRoomId.Text + "'";
-                SqlCommand myCommand = new SqlCommand(sql, DatabaseConnect.myConn);
-                myCommand.ExecuteNonQuery();
 
-
-                sql = "delete from RoomBooking where idroom='" + lbRoomId.Text + "' and checkin='" + txtStart.Text + "' and checkout='" + txtEnd.Text + "'";
-                myCommand = new SqlCommand(sql, DatabaseConnect.myConn);
-                myCommand.ExecuteNonQuery();
+                var roomb = DatabaseConnect.db.roombookings.Where(s => s.idroom == lbRoomId.Text).SingleOrDefault();
+                DatabaseConnect.db.roombookings.Remove(roomb);
+                DatabaseConnect.db.SaveChanges();
 
 
                 loadData();
-                //Close
-                DatabaseConnect.myConn.Close();
             }
 
         }
         void loadData()
         {
-            //Open database
-            DatabaseConnect.myConn.Close();
-            DatabaseConnect.myConn.Open();
-            //Load database
-            String sql = "select * from Room";
-            SqlCommand myCommand = new SqlCommand(sql, DatabaseConnect.myConn);
-            SqlDataAdapter myDa = new SqlDataAdapter();
-            myDa.SelectCommand = myCommand;
-            DataTable myDT = new DataTable();
-            myDa.Fill(myDT);
-            //Load Data into datagridview
-            dgvRoom.DataSource = myDT;
-            //Close 
-            DatabaseConnect.myConn.Close();
+            var lstroom = DatabaseConnect.db.Rooms.ToList();
+            dgvRoom.DataSource = lstroom;
         }
 
         private void btnChange_Click(object sender, EventArgs e)
@@ -155,24 +138,22 @@ namespace QLKaraoke
 
         private void btnConfirm_Click(object sender, EventArgs e)
         {
-            //open connection
-            String ConnStr = "Server=DESKTOP-UNV9GNN\\SQLEXPRESS;Initial Catalog=QLKaraoke_DB;Integrated Security=True";
-            SqlConnection myConn = new SqlConnection(ConnStr);
-            myConn.Open();
-            //excecute command
 
-            String sql = "update Room set  timestart='" + dtpCheckIn.Text + "',timeend='" + dtpCheckOut.Text + "'where idroom ='" + lbRoomId.Text + "'";
-            SqlCommand myCommand = new SqlCommand(sql, myConn);
-            myCommand.ExecuteNonQuery();
+
+            var room = DatabaseConnect.db.Rooms.Where(s => s.idroom == lbRoomId.Text).SingleOrDefault();
+
+            room.timeend = dtpCheckOut.Text;
+            room.timestart = dtpCheckIn.Text;
 
 
 
-            sql = "update roombooking set checkin='" + dtpCheckIn.Text + "', checkout='" + dtpCheckOut.Text + "' where idroom='" + lbRoomId.Text + "' and checkin='" + txtStart.Text + "' and checkout='" + txtEnd.Text + "'";
-            myCommand = new SqlCommand(sql, myConn);
-            myCommand.ExecuteNonQuery();
+            var roomb = DatabaseConnect.db.roombookings.Where(s => s.idroom == lbRoomId.Text && s.@checked == null).SingleOrDefault();
 
-            //close connection
-            myConn.Close();
+            roomb.checkin = dtpCheckIn.Text;
+            roomb.checkout = dtpCheckOut.Text;
+
+            DatabaseConnect.db.SaveChanges();
+
             //load again datagriview
             loadData();
 
@@ -191,8 +172,31 @@ namespace QLKaraoke
 
         private void btnAll_Click(object sender, EventArgs e)
         {
-            RoomBooking newform = new RoomBooking();
+            FormRoomBooking newform = new FormRoomBooking();
             newform.Show();
+        }
+
+        private void txtUpdateMoney_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) &&
+    (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
+
+            // only allow one decimal point
+            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            var room =DatabaseConnect.db.Rooms.Find(lbRoomId.Text);
+            room.cash = Int32.Parse(txtUpdateMoney.Text);
+            DatabaseConnect.db.SaveChanges();
+            loadData();
         }
     }
 }

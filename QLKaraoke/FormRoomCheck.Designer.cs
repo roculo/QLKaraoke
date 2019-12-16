@@ -42,8 +42,8 @@
             this.couponDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.roomBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.qLResortDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.qLResortDataSet = new QLKaraoke_DBDataSet();
-            this.roomTableAdapter = new QLKaraoke_DBDataSetTableAdapters.RoomTableAdapter();
+            this.qLResortDataSet = new QLKaraoke.QLKaraoke_DBDataSet();
+            this.roomTableAdapter = new QLKaraoke.QLKaraoke_DBDataSetTableAdapters.RoomTableAdapter();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.lbPhone = new System.Windows.Forms.Label();
@@ -72,6 +72,9 @@
             this.label13 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.btnAll = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtUpdateMoney = new System.Windows.Forms.TextBox();
+            this.btnEdit = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRoom)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.roomBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.qLResortDataSetBindingSource)).BeginInit();
@@ -130,7 +133,7 @@
             // cashDataGridViewTextBoxColumn
             // 
             this.cashDataGridViewTextBoxColumn.DataPropertyName = "cash";
-            this.cashDataGridViewTextBoxColumn.HeaderText = "Money /1day(VND)";
+            this.cashDataGridViewTextBoxColumn.HeaderText = "Money /1 Hour(VND)";
             this.cashDataGridViewTextBoxColumn.Name = "cashDataGridViewTextBoxColumn";
             this.cashDataGridViewTextBoxColumn.ReadOnly = true;
             // 
@@ -199,7 +202,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft YaHei", 27.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(1, -1);
+            this.label1.Location = new System.Drawing.Point(10, 1);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(229, 50);
             this.label1.TabIndex = 1;
@@ -439,9 +442,9 @@
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.Location = new System.Drawing.Point(6, 79);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(89, 16);
+            this.label8.Size = new System.Drawing.Size(73, 16);
             this.label8.TabIndex = 0;
-            this.label8.Text = "Money/1day :";
+            this.label8.Text = "Money/1h :";
             // 
             // label9
             // 
@@ -494,11 +497,43 @@
             this.btnAll.UseVisualStyleBackColor = true;
             this.btnAll.Click += new System.EventHandler(this.btnAll_Click);
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(12, 214);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(56, 20);
+            this.label5.TabIndex = 9;
+            this.label5.Text = "Money";
+            // 
+            // txtUpdateMoney
+            // 
+            this.txtUpdateMoney.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtUpdateMoney.Location = new System.Drawing.Point(74, 209);
+            this.txtUpdateMoney.Name = "txtUpdateMoney";
+            this.txtUpdateMoney.Size = new System.Drawing.Size(100, 22);
+            this.txtUpdateMoney.TabIndex = 10;
+            this.txtUpdateMoney.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtUpdateMoney_KeyPress);
+            // 
+            // btnEdit
+            // 
+            this.btnEdit.Location = new System.Drawing.Point(189, 208);
+            this.btnEdit.Name = "btnEdit";
+            this.btnEdit.Size = new System.Drawing.Size(68, 23);
+            this.btnEdit.TabIndex = 11;
+            this.btnEdit.Text = "Edit";
+            this.btnEdit.UseVisualStyleBackColor = true;
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
+            // 
             // FormRoomCheck
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(950, 510);
+            this.Controls.Add(this.btnEdit);
+            this.Controls.Add(this.txtUpdateMoney);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.btnAll);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -528,16 +563,6 @@
         private QLKaraoke_DBDataSet qLResortDataSet;
         private System.Windows.Forms.BindingSource roomBindingSource;
         private QLKaraoke_DBDataSetTableAdapters.RoomTableAdapter roomTableAdapter;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idroomDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn typeDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn peopleDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cashDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn noteDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idcardDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn timestartDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn timeendDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn paidDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn couponDataGridViewTextBoxColumn;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label lbPhone;
@@ -566,5 +591,18 @@
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnConfirm;
         private System.Windows.Forms.Button btnAll;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idroomDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn typeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn peopleDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cashDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn noteDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idcardDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn timestartDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn timeendDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn paidDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn couponDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox txtUpdateMoney;
+        private System.Windows.Forms.Button btnEdit;
     }
 }

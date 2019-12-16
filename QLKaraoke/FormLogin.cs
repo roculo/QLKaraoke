@@ -13,10 +13,14 @@ namespace QLKaraoke
 {
     public partial class FormLogin : Form
     {
-        public static string Name;
+        public static String staffName;
+        public static String staffUserName;
+        public static String staffPass;
         public FormLogin()
         {
+            
             InitializeComponent();
+           
         }
 
         private void btnExit_Click(object sender, EventArgs e)
@@ -29,22 +33,17 @@ namespace QLKaraoke
             String username = txtUser.Text;
             String password = txtPass.Text;
             
-            DatabaseConnect.myConn.Open();
-
-            String sql = "select * from LoginAccount where username='" + username + "' and pass='" + password + "'";
-            SqlCommand myCommand = new SqlCommand(sql, DatabaseConnect.myConn);
-            SqlDataReader dta = myCommand.ExecuteReader();
-            if (dta.Read() == true)
+               if (DatabaseConnect.db.LoginAccounts.Any(s => s.username == username && s.Pass == password))
             {
-                dta.Close();
-                SqlDataAdapter myDa = new SqlDataAdapter();
-                myDa.SelectCommand = myCommand;
-                DataTable myDT = new DataTable();
-                myDa.Fill(myDT);
-                Name = myDT.Rows[0]["Name"].ToString();
-                this.Hide();
+                var loginAcc = DatabaseConnect.db.LoginAccounts.Where(s => s.username == username).Single();
+                staffName = loginAcc.name;
+                staffUserName = loginAcc.username;
+                staffPass = loginAcc.Pass;
+               
                 FormMenu newform = new FormMenu();
                 newform.Show();
+                newform.Focus();
+                this.Hide();
             }
             else
             {
@@ -55,6 +54,18 @@ namespace QLKaraoke
 
             DatabaseConnect.myConn.Close();
 
+        }
+
+        private void btnRegister_Click(object sender, EventArgs e)
+        {
+            FormRegisterStaff newform = new FormRegisterStaff();
+            newform.Show();
+        }
+
+        private void FormLogin_Load(object sender, EventArgs e)
+        {
+            txtUser.Text = "duongbui";
+            txtPass.Text = "123";
         }
     }
 }

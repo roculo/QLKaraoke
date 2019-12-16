@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QLKaraoke_DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="FoodBeverage">
+    <Key>
+      <PropertyRef Name="name" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="money" Type="int" />
+  </EntityType>
+  <EntityType Name="FoodServices">
+    <Key>
+      <PropertyRef Name="OrderValue" />
+    </Key>
+    <Property Name="OrderValue" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idcard" Type="nvarchar" MaxLength="50" />
+    <Property Name="foodname" Type="nvarchar" MaxLength="50" />
+    <Property Name="number" Type="int" />
+    <Property Name="moneyper" Type="int" />
+    <Property Name="value" Type="int" />
+    <Property Name="timecall" Type="text" />
+    <Property Name="checked" Type="int" />
+  </EntityType>
+  <EntityType Name="Invoice">
+    <Key>
+      <PropertyRef Name="idinvoice" />
+    </Key>
+    <Property Name="idinvoice" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="member" Type="nvarchar" MaxLength="50" />
+    <Property Name="room" Type="int" />
+    <Property Name="foodandbeverage" Type="int" />
+    <Property Name="service" Type="int" />
+    <Property Name="total" Type="int" />
+    <Property Name="daycreate" Type="nvarchar" MaxLength="50" />
+    <Property Name="staff" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="LoginAccount">
+    <Key>
+      <PropertyRef Name="username" />
+    </Key>
+    <Property Name="username" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Pass" Type="nvarchar" MaxLength="50" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" />
+    <Property Name="sex" Type="nvarchar" MaxLength="50" />
+    <Property Name="birthday" Type="nvarchar" MaxLength="50" />
+    <Property Name="joined" Type="nvarchar" MaxLength="50" />
+    <Property Name="address" Type="nvarchar" MaxLength="100" />
+    <Property Name="phone" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Member">
+    <Key>
+      <PropertyRef Name="idcard" />
+    </Key>
+    <Property Name="idcard" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" />
+    <Property Name="sex" Type="nvarchar" MaxLength="50" />
+    <Property Name="born" Type="nvarchar" MaxLength="50" />
+    <Property Name="phone" Type="nvarchar" MaxLength="50" />
+    <Property Name="address" Type="nvarchar(max)" />
+    <Property Name="daycreate" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Room">
+    <Key>
+      <PropertyRef Name="idroom" />
+    </Key>
+    <Property Name="idroom" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="type" Type="nvarchar" MaxLength="50" />
+    <Property Name="people" Type="int" />
+    <Property Name="cash" Type="int" />
+    <Property Name="note" Type="ntext" />
+    <Property Name="idcard" Type="nvarchar" MaxLength="50" />
+    <Property Name="timestart" Type="text" />
+    <Property Name="timeend" Type="text" />
+    <Property Name="paid" Type="int" />
+    <Property Name="coupon" Type="int" />
+  </EntityType>
+  <EntityType Name="roombooking">
+    <Key>
+      <PropertyRef Name="orderroom" />
+    </Key>
+    <Property Name="orderroom" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idroom" Type="nvarchar" MaxLength="50" />
+    <Property Name="idcard" Type="nvarchar" MaxLength="50" />
+    <Property Name="checkin" Type="nvarchar" MaxLength="50" />
+    <Property Name="checkout" Type="nvarchar" MaxLength="50" />
+    <Property Name="paid" Type="int" />
+    <Property Name="checked" Type="int" />
+  </EntityType>
+  <EntityContainer Name="QLKaraoke_DBModelStoreContainer">
+    <EntitySet Name="FoodBeverage" EntityType="Self.FoodBeverage" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FoodServices" EntityType="Self.FoodServices" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Invoice" EntityType="Self.Invoice" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LoginAccount" EntityType="Self.LoginAccount" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Member" EntityType="Self.Member" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Room" EntityType="Self.Room" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="roombooking" EntityType="Self.roombooking" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

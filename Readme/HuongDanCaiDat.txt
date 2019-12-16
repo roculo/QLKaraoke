@@ -1,0 +1,11 @@
+Huong Dan Su Dung
+1. Giai nen file rar
+2. Cai dat database bang cach
+   Su Dung SQL SERVER de extract database QLResort.mdf và QLResort.ldf
+3. Dung Visual Studio de mo Project giai nen len
+4. Edit lai duong dan ket noi toi database trong cac file 
+   +App.config connectionstring
+   +Path trong file DatabaseConnect.cs
+5. Run chuong trinh
+Chi tiet:
+Xem file bao cao

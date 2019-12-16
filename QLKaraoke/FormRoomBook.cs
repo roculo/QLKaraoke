@@ -35,32 +35,18 @@ namespace QLKaraoke
         private void btnCheck_Click(object sender, EventArgs e)
         {
 
-            try
+
+            if (DatabaseConnect.db.Members.Any(s => s.idcard == txtId.Text))
             {
-                //Open database
-
-                DatabaseConnect.myConn.Open();
-                //Load database
-                String sql = "select * from member where idcard='" + txtId.Text + "'";
-                SqlCommand myCommand = new SqlCommand(sql, DatabaseConnect.myConn);
-                SqlDataAdapter myDa = new SqlDataAdapter();
-                myDa.SelectCommand = myCommand;
-                DataTable myDT = new DataTable();
-                myDa.Fill(myDT);
-                if (myDT.Rows[0]["idcard"].ToString() == txtId.Text)
-                {
-                    MessageBox.Show("Ok");
-                    btnBook.Enabled = true;
-                    txtId.Enabled = false;
-                }
-
-                //Close
-                DatabaseConnect.myConn.Close();
+                MessageBox.Show("Ok");
+                btnBook.Enabled = true;
+                txtId.Enabled = false;
             }
-            catch
+            else
             {
                 MessageBox.Show("This Member is not Register yet");
             }
+
 
 
 
@@ -77,16 +63,13 @@ namespace QLKaraoke
                 type = "Normal";
 
             String finish = dtpEnd.Text;
-            if(dtpStart.Text==dtpEnd.Text)
+            if (dtpStart.Text == dtpEnd.Text)
             {
                 finish = "";
             }
 
 
-            //open connection
 
-            DatabaseConnect.myConn.Open();
-            //excecute command
             String sql = "select idroom from Room where type='" + type + "' and people=" + people + " and idcard is NULL ";
             SqlCommand myCommand = new SqlCommand(sql, DatabaseConnect.myConn);
             SqlDataAdapter myDa = new SqlDataAdapter();
@@ -102,10 +85,10 @@ namespace QLKaraoke
 
                 if (now.Day == checkin.Day)//dat trong ngay
                 {
-
+                    DatabaseConnect.myConn.Open();
                     MessageBox.Show(myDT.Rows[0]["idroom"].ToString());
                     String roomid = myDT.Rows[0]["idroom"].ToString();
-                    if(txtId.Text=="Guest")
+                    if (txtId.Text == "Guest")
                     {
                         txtId.Text = myDT.Rows[0]["idroom"].ToString();
                     }

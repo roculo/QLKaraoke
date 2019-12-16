@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QLKaraoke_DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="FoodBeverage">
+    <Key>
+      <PropertyRef Name="name" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="money" Type="Int32" />
+  </EntityType>
+  <EntityType Name="FoodService">
+    <Key>
+      <PropertyRef Name="OrderValue" />
+    </Key>
+    <Property Name="OrderValue" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idcard" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="foodname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="number" Type="Int32" />
+    <Property Name="moneyper" Type="Int32" />
+    <Property Name="value" Type="Int32" />
+    <Property Name="timecall" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="checked" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Invoice">
+    <Key>
+      <PropertyRef Name="idinvoice" />
+    </Key>
+    <Property Name="idinvoice" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="member" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="room" Type="Int32" />
+    <Property Name="foodandbeverage" Type="Int32" />
+    <Property Name="service" Type="Int32" />
+    <Property Name="total" Type="Int32" />
+    <Property Name="daycreate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="staff" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="LoginAccount">
+    <Key>
+      <PropertyRef Name="username" />
+    </Key>
+    <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Pass" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="sex" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="birthday" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="joined" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Member">
+    <Key>
+      <PropertyRef Name="idcard" />
+    </Key>
+    <Property Name="idcard" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="sex" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="born" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="daycreate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Room">
+    <Key>
+      <PropertyRef Name="idroom" />
+    </Key>
+    <Property Name="idroom" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="people" Type="Int32" />
+    <Property Name="cash" Type="Int32" />
+    <Property Name="note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="idcard" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="timestart" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="timeend" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="paid" Type="Int32" />
+    <Property Name="coupon" Type="Int32" />
+  </EntityType>
+  <EntityType Name="roombooking">
+    <Key>
+      <PropertyRef Name="orderroom" />
+    </Key>
+    <Property Name="orderroom" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idroom" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="idcard" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="checkin" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="checkout" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="paid" Type="Int32" />
+    <Property Name="checked" Type="Int32" />
+  </EntityType>
+  <EntityContainer Name="QLKaraoke_DBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="FoodBeverages" EntityType="Self.FoodBeverage" />
+    <EntitySet Name="FoodServices" EntityType="Self.FoodService" />
+    <EntitySet Name="Invoices" EntityType="Self.Invoice" />
+    <EntitySet Name="LoginAccounts" EntityType="Self.LoginAccount" />
+    <EntitySet Name="Members" EntityType="Self.Member" />
+    <EntitySet Name="Rooms" EntityType="Self.Room" />
+    <EntitySet Name="roombookings" EntityType="Self.roombooking" />
+  </EntityContainer>
+</Schema>
