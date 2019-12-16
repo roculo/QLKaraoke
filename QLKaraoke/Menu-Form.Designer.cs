@@ -38,6 +38,10 @@
             this.button1 = new System.Windows.Forms.Button();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.cbRoom = new System.Windows.Forms.ComboBox();
+<<<<<<< HEAD
+=======
+            this.btnTerminate = new System.Windows.Forms.Button();
+>>>>>>> d6ad624263c68ce9f7ef15d4b378ea928129048a
             this.btnPurchase = new System.Windows.Forms.Button();
             this.btnCheckk = new System.Windows.Forms.Button();
             this.txtId = new System.Windows.Forms.TextBox();
@@ -118,6 +122,7 @@
             this.Introduce = new System.Windows.Forms.TabPage();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+<<<<<<< HEAD
             this.lbTotal = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.dgvInvoice = new System.Windows.Forms.DataGridView();
@@ -155,6 +160,16 @@
             this.pictureBox27 = new System.Windows.Forms.PictureBox();
             this.pictureBox26 = new System.Windows.Forms.PictureBox();
             this.pictureBox24 = new System.Windows.Forms.PictureBox();
+=======
+            this.dtpFrom = new System.Windows.Forms.DateTimePicker();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.dtpTo = new System.Windows.Forms.DateTimePicker();
+            this.btnStatistical = new System.Windows.Forms.Button();
+            this.dgvInvoice = new System.Windows.Forms.DataGridView();
+            this.label5 = new System.Windows.Forms.Label();
+            this.lbTotal = new System.Windows.Forms.Label();
+>>>>>>> d6ad624263c68ce9f7ef15d4b378ea928129048a
             ((System.ComponentModel.ISupportInitialize)(this.invoiceBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.qLResortDataSet)).BeginInit();
             this.tabPage4.SuspendLayout();
@@ -202,6 +217,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox20)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox19)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox18)).BeginInit();
+<<<<<<< HEAD
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox23)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox22)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox21)).BeginInit();
@@ -224,6 +240,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox27)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox26)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox24)).BeginInit();
+=======
+            this.Introduce.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.tabControl1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvInvoice)).BeginInit();
+>>>>>>> d6ad624263c68ce9f7ef15d4b378ea928129048a
             this.SuspendLayout();
             // 
             // invoiceBindingSource
@@ -294,6 +317,35 @@
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // cbRoom
+<<<<<<< HEAD
+=======
+            // 
+            this.cbRoom.FormattingEnabled = true;
+            this.cbRoom.Items.AddRange(new object[] {
+            "N0_0",
+            "N0_1",
+            "N2_0",
+            "N2_1",
+            "N4_0",
+            "N4_1",
+            "N8_0",
+            "N8_1",
+            "V0_0",
+            "V0_1",
+            "V2_0",
+            "V2_1",
+            "V4_0",
+            "V4_1",
+            "V8_0",
+            "V8_1"});
+            this.cbRoom.Location = new System.Drawing.Point(288, 344);
+            this.cbRoom.Name = "cbRoom";
+            this.cbRoom.Size = new System.Drawing.Size(87, 21);
+            this.cbRoom.TabIndex = 7;
+            this.cbRoom.SelectedIndexChanged += new System.EventHandler(this.cbRoom_SelectedIndexChanged);
+            // 
+            // btnTerminate
+>>>>>>> d6ad624263c68ce9f7ef15d4b378ea928129048a
             // 
             this.cbRoom.FormattingEnabled = true;
             this.cbRoom.Items.AddRange(new object[] {
@@ -1215,6 +1267,7 @@
             this.tabPage2.Text = "Statistical";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+<<<<<<< HEAD
             // lbTotal
             // 
             this.lbTotal.AutoSize = true;
@@ -1255,6 +1308,25 @@
             this.btnStatistical.Text = "Check";
             this.btnStatistical.UseVisualStyleBackColor = true;
             this.btnStatistical.Click += new System.EventHandler(this.btnStatistical_Click);
+=======
+            // dtpFrom
+            // 
+            this.dtpFrom.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpFrom.Location = new System.Drawing.Point(58, 11);
+            this.dtpFrom.Name = "dtpFrom";
+            this.dtpFrom.Size = new System.Drawing.Size(227, 22);
+            this.dtpFrom.TabIndex = 0;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(13, 18);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(39, 16);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "From";
+>>>>>>> d6ad624263c68ce9f7ef15d4b378ea928129048a
             // 
             // label3
             // 
@@ -1266,6 +1338,7 @@
             this.label3.TabIndex = 1;
             this.label3.Text = "To";
             // 
+<<<<<<< HEAD
             // label1
             // 
             this.label1.AutoSize = true;
@@ -1276,6 +1349,8 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "From";
             // 
+=======
+>>>>>>> d6ad624263c68ce9f7ef15d4b378ea928129048a
             // dtpTo
             // 
             this.dtpTo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1284,6 +1359,7 @@
             this.dtpTo.Size = new System.Drawing.Size(237, 22);
             this.dtpTo.TabIndex = 0;
             // 
+<<<<<<< HEAD
             // dtpFrom
             // 
             this.dtpFrom.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1584,6 +1660,48 @@
             this.pictureBox24.TabIndex = 3;
             this.pictureBox24.TabStop = false;
             this.pictureBox24.Click += new System.EventHandler(this.pictureBox24_Click);
+=======
+            // btnStatistical
+            // 
+            this.btnStatistical.Location = new System.Drawing.Point(749, 9);
+            this.btnStatistical.Name = "btnStatistical";
+            this.btnStatistical.Size = new System.Drawing.Size(76, 31);
+            this.btnStatistical.TabIndex = 2;
+            this.btnStatistical.Text = "Check";
+            this.btnStatistical.UseVisualStyleBackColor = true;
+            this.btnStatistical.Click += new System.EventHandler(this.btnStatistical_Click);
+            // 
+            // dgvInvoice
+            // 
+            this.dgvInvoice.AllowUserToAddRows = false;
+            this.dgvInvoice.AllowUserToDeleteRows = false;
+            this.dgvInvoice.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvInvoice.Location = new System.Drawing.Point(16, 46);
+            this.dgvInvoice.Name = "dgvInvoice";
+            this.dgvInvoice.ReadOnly = true;
+            this.dgvInvoice.Size = new System.Drawing.Size(856, 283);
+            this.dgvInvoice.TabIndex = 3;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(240, 354);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(56, 24);
+            this.label5.TabIndex = 4;
+            this.label5.Text = "Total";
+            // 
+            // lbTotal
+            // 
+            this.lbTotal.AutoSize = true;
+            this.lbTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTotal.Location = new System.Drawing.Point(340, 354);
+            this.lbTotal.Name = "lbTotal";
+            this.lbTotal.Size = new System.Drawing.Size(56, 24);
+            this.lbTotal.TabIndex = 4;
+            this.lbTotal.Text = "Total";
+>>>>>>> d6ad624263c68ce9f7ef15d4b378ea928129048a
             // 
             // FormMenu
             // 
@@ -1648,6 +1766,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox20)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox19)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox18)).EndInit();
+<<<<<<< HEAD
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox23)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox22)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox21)).EndInit();
@@ -1670,6 +1789,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox27)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox26)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox24)).EndInit();
+=======
+            this.Introduce.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.tabControl1.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvInvoice)).EndInit();
+>>>>>>> d6ad624263c68ce9f7ef15d4b378ea928129048a
             this.ResumeLayout(false);
 
         }
@@ -1797,8 +1924,11 @@
         private System.Windows.Forms.DataGridView dgvInvoice;
         private System.Windows.Forms.Label lbTotal;
         private System.Windows.Forms.Label label5;
+<<<<<<< HEAD
         private System.Windows.Forms.Button btnChangePass;
         private System.Windows.Forms.Label lbHiName;
         private System.Windows.Forms.PictureBox pictureBox24;
+=======
+>>>>>>> d6ad624263c68ce9f7ef15d4b378ea928129048a
     }
 }

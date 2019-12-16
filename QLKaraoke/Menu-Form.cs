@@ -21,7 +21,11 @@ namespace QLKaraoke
             InitializeComponent();
             btnTerminate.Visible = false;
             btnPurchase.Enabled = false;
+<<<<<<< HEAD
             lbHiName.Text = "Hello, "+ FormLogin.staffName;
+=======
+
+>>>>>>> d6ad624263c68ce9f7ef15d4b378ea928129048a
 
 
         }
@@ -572,6 +576,7 @@ namespace QLKaraoke
 
         }
 
+<<<<<<< HEAD
         private void btnChangePass_Click(object sender, EventArgs e)
         {
             FormChangePass newform = new FormChangePass();
@@ -585,6 +590,8 @@ namespace QLKaraoke
             newform.Show();
         }
 
+=======
+>>>>>>> d6ad624263c68ce9f7ef15d4b378ea928129048a
         private void nBull_ValueChanged(object sender, EventArgs e)
         {
             bull = Convert.ToInt32(Math.Round(nBull.Value, 0)) * 15000;

@@ -32,7 +32,11 @@ namespace QLKaraoke
         private void dgvRoom_SelectionChanged(object sender, EventArgs e)
         {
             var curRow = dgvRoom.CurrentRow;
+<<<<<<< HEAD
             if (curRow != null && dgvRoom.Rows[0].Cells[5].Value != null)
+=======
+            if (curRow != null && dgvRoom.Rows[0].Cells[5].Value!=null)
+>>>>>>> d6ad624263c68ce9f7ef15d4b378ea928129048a
             {
                 int index = dgvRoom.CurrentCell.RowIndex;
 
@@ -44,7 +48,10 @@ namespace QLKaraoke
                 lbDeposited.Text = dgvRoom.Rows[index].Cells[9].Value.ToString();
                 txtStart.Text = dgvRoom.Rows[index].Cells[6].Value.ToString();
                 txtEnd.Text = dgvRoom.Rows[index].Cells[7].Value.ToString();
+<<<<<<< HEAD
                 txtUpdateMoney.Text = lbMoney.Text;
+=======
+>>>>>>> d6ad624263c68ce9f7ef15d4b378ea928129048a
             }
 
             dtpCheckIn.Format = DateTimePickerFormat.Custom;
@@ -81,6 +88,7 @@ namespace QLKaraoke
             // If the no button was pressed ...
             if (result == DialogResult.Yes)
             {
+<<<<<<< HEAD
 
                 var room = DatabaseConnect.db.Rooms.Where(s => s.idroom == lbRoomId.Text).SingleOrDefault();
                 room.idcard = null;
@@ -91,6 +99,18 @@ namespace QLKaraoke
                 DatabaseConnect.db.SaveChanges();
 
 
+=======
+
+                var room = DatabaseConnect.db.Rooms.Where(s => s.idroom == lbRoomId.Text).SingleOrDefault();
+                room.idcard = null;
+                room.timeend = null;
+                room.timestart = null;
+                room.paid = 0;
+                room.coupon = 0;
+                DatabaseConnect.db.SaveChanges();
+
+
+>>>>>>> d6ad624263c68ce9f7ef15d4b378ea928129048a
                 var roomb = DatabaseConnect.db.roombookings.Where(s => s.idroom == lbRoomId.Text).SingleOrDefault();
                 DatabaseConnect.db.roombookings.Remove(roomb);
                 DatabaseConnect.db.SaveChanges();
@@ -139,6 +159,14 @@ namespace QLKaraoke
         private void btnConfirm_Click(object sender, EventArgs e)
         {
 
+<<<<<<< HEAD
+
+            var room = DatabaseConnect.db.Rooms.Where(s => s.idroom == lbRoomId.Text).SingleOrDefault();
+
+            room.timeend = dtpCheckOut.Text;
+            room.timestart = dtpCheckIn.Text;
+=======
+>>>>>>> d6ad624263c68ce9f7ef15d4b378ea928129048a
 
             var room = DatabaseConnect.db.Rooms.Where(s => s.idroom == lbRoomId.Text).SingleOrDefault();
 
@@ -147,11 +175,19 @@ namespace QLKaraoke
 
 
 
+            var roomb = DatabaseConnect.db.roombookings.Where(s => s.idroom == lbRoomId.Text &&s.@checked==null).SingleOrDefault();
+
+            roomb.checkin = dtpCheckIn.Text;
+            roomb.checkout = dtpCheckOut.Text;
+
+<<<<<<< HEAD
             var roomb = DatabaseConnect.db.roombookings.Where(s => s.idroom == lbRoomId.Text && s.@checked == null).SingleOrDefault();
 
             roomb.checkin = dtpCheckIn.Text;
             roomb.checkout = dtpCheckOut.Text;
 
+=======
+>>>>>>> d6ad624263c68ce9f7ef15d4b378ea928129048a
             DatabaseConnect.db.SaveChanges();
 
             //load again datagriview

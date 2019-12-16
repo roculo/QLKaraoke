@@ -35,12 +35,24 @@ namespace QLKaraoke
         private void btnCheck_Click(object sender, EventArgs e)
         {
 
+<<<<<<< HEAD
 
             if (DatabaseConnect.db.Members.Any(s => s.idcard == txtId.Text))
             {
                 MessageBox.Show("Ok");
                 btnBook.Enabled = true;
                 txtId.Enabled = false;
+=======
+            try
+            {
+                if (DatabaseConnect.db.Members.Any(s => s.idcard == txtId.Text))
+                {
+                    MessageBox.Show("Ok");
+                    btnBook.Enabled = true;
+                    txtId.Enabled = false;
+                }
+                
+>>>>>>> d6ad624263c68ce9f7ef15d4b378ea928129048a
             }
             else
             {
@@ -69,7 +81,11 @@ namespace QLKaraoke
             }
 
 
+<<<<<<< HEAD
 
+=======
+         
+>>>>>>> d6ad624263c68ce9f7ef15d4b378ea928129048a
             String sql = "select idroom from Room where type='" + type + "' and people=" + people + " and idcard is NULL ";
             SqlCommand myCommand = new SqlCommand(sql, DatabaseConnect.myConn);
             SqlDataAdapter myDa = new SqlDataAdapter();
@@ -85,7 +101,11 @@ namespace QLKaraoke
 
                 if (now.Day == checkin.Day)//dat trong ngay
                 {
+<<<<<<< HEAD
                     DatabaseConnect.myConn.Open();
+=======
+                DatabaseConnect.myConn.Open();
+>>>>>>> d6ad624263c68ce9f7ef15d4b378ea928129048a
                     MessageBox.Show(myDT.Rows[0]["idroom"].ToString());
                     String roomid = myDT.Rows[0]["idroom"].ToString();
                     if (txtId.Text == "Guest")

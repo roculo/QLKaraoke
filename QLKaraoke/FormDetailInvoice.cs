@@ -135,6 +135,7 @@ namespace QLKaraoke
                 label4.Visible = false;
                 MessageBox.Show("Invalid Invoice Number");
 
+<<<<<<< HEAD
             }
             if (lbName.Text.Count() > 4)
             {
@@ -142,7 +143,10 @@ namespace QLKaraoke
                 discount = 0.9;
                 double saleprice = tongtien * discount;
                 lbTotal.Text= "" + saleprice.ToString("C");
+=======
+>>>>>>> d6ad624263c68ce9f7ef15d4b378ea928129048a
             }
+
         }
 
 

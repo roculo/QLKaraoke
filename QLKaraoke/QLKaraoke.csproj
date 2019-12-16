@@ -172,6 +172,15 @@
     </Compile>
     <Compile Include="FormRoomBooking.Designer.cs">
       <DependentUpon>FormRoomBooking.cs</DependentUpon>
+<<<<<<< HEAD
+=======
+    </Compile>
+    <Compile Include="Room.cs">
+      <DependentUpon>EntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="roombooking.cs">
+      <DependentUpon>EntityModel.tt</DependentUpon>
+>>>>>>> d6ad624263c68ce9f7ef15d4b378ea928129048a
     </Compile>
     <Compile Include="Room.cs">
       <DependentUpon>EntityModel.tt</DependentUpon>

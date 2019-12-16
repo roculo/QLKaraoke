@@ -24,5 +24,8 @@ C:\Users\84122\Documents\Visual Studio 2015\Projects\QLKaraoke\QLKaraoke\bin\Deb
 C:\Users\84122\Documents\Visual Studio 2015\Projects\QLKaraoke\QLKaraoke\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\84122\Documents\Visual Studio 2015\Projects\QLKaraoke\QLKaraoke\obj\Debug\QLKaraoke.FormRoomBooking.resources
 C:\Users\84122\Documents\Visual Studio 2015\Projects\QLKaraoke\QLKaraoke\obj\Debug\QLKaraoke.FormRegisterStaff.resources
+<<<<<<< HEAD
 C:\Users\84122\Documents\Visual Studio 2015\Projects\QLKaraoke\QLKaraoke\obj\Debug\QLKaraoke.FormCheckOut.resources
 C:\Users\84122\Documents\Visual Studio 2015\Projects\QLKaraoke\QLKaraoke\obj\Debug\QLKaraoke.FormChangePass.resources
+=======
+>>>>>>> d6ad624263c68ce9f7ef15d4b378ea928129048a

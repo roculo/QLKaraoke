@@ -14,8 +14,11 @@ namespace QLKaraoke
     public partial class FormLogin : Form
     {
         public static String staffName;
+<<<<<<< HEAD
         public static String staffUserName;
         public static String staffPass;
+=======
+>>>>>>> d6ad624263c68ce9f7ef15d4b378ea928129048a
         public FormLogin()
         {
             
@@ -37,9 +40,14 @@ namespace QLKaraoke
             {
                 var loginAcc = DatabaseConnect.db.LoginAccounts.Where(s => s.username == username).Single();
                 staffName = loginAcc.name;
+<<<<<<< HEAD
                 staffUserName = loginAcc.username;
                 staffPass = loginAcc.Pass;
                
+=======
+
+                this.Hide();
+>>>>>>> d6ad624263c68ce9f7ef15d4b378ea928129048a
                 FormMenu newform = new FormMenu();
                 newform.Show();
                 newform.Focus();
@@ -61,11 +69,14 @@ namespace QLKaraoke
             FormRegisterStaff newform = new FormRegisterStaff();
             newform.Show();
         }
+<<<<<<< HEAD
 
         private void FormLogin_Load(object sender, EventArgs e)
         {
             txtUser.Text = "duongbui";
             txtPass.Text = "123";
         }
+=======
+>>>>>>> d6ad624263c68ce9f7ef15d4b378ea928129048a
     }
 }
